@@ -34,6 +34,7 @@ const displayALLnews = (data, name) => {
         const { image_url, details, title, total_view, author, rating, _id } = news;
         const { name, published_date, img } = author;
         const { number } = rating;
+        let timeDates = new Date(published_date);
         const card = document.createElement('div');
         card.innerHTML = `
         <div class="card mb-3 container border-0 p-0">
@@ -55,19 +56,15 @@ const displayALLnews = (data, name) => {
                         </div>
                         <div class="d-flex flex-column">
                             <span>${name}</span>
-                            <span>${published_date ? published_date : "2022-08-24"}</span>
+                            <span>${timeDates ? timeDates : "2022-08-24"}</span>
                         </div>
                     </div>
 
                     <div>
-                        <i class="fa-solid fa-eye"></i><span> ${total_view?total_view:544}</span>
+                        <i class="fa-solid fa-eye"></i><span> ${total_view ? total_view : 544}</span>
                     </div>
                     <div>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                        ${showRatings(number)}
                         <small class="text-gray"> ${number}</small>
                     </div>
                     <div>
@@ -81,13 +78,7 @@ const displayALLnews = (data, name) => {
         cardSection.appendChild(card);
     });
 };
-// show rating
-// const showRating = (number) => {
-//     number.forEach(num => {
-//         console.log(num);
-//     })
-// }
-
+// display tending
 const displayTending = () => {
     const tendingData = fetchData.filter(news => news.others_info.is_trending === true);
     const name = document.getElementById('category_name').innerText;
@@ -112,34 +103,33 @@ const displayOneNewDetails = (news) => {
     const { image_url, details, title, total_view, author, rating, _id } = news;
     const { name, published_date, img } = author;
     const { number } = rating;
+    let timeDates = new Date(published_date);
     modalSection.innerHTML = `
-    <div class="modal-header">
+    <div class="modal-header">j
     <h1 class="modal-title fs-5" id="exampleModalLabel">${title}</h1>
     </div>
     <div class="modal-body">
     <img src="${image_url}" class="img-fluid rounded-start" alt="...">
     <p class="card-text">${details}...</p>
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex gap-2">
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-column gap-2">
             <div class="" style="width:50px">
                 <img src="${img}" class="img-fluid rounded-circle border" alt="">
             </div>
-            <div class="d-flex flex-column">
+            <div class="">
                 <span>${name}</span>
-                <span>${published_date ? published_date : "2022-08-24"}</span>
+                <span>${timeDates ? timeDates : "2022-08-24"}</span>
             </div>
         </div>
 
-        <div>
-            <i class="fa-solid fa-eye"></i><span> ${total_view?total_view:544}</span>
-        </div>
-        <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+        <div class="">
+            <div>
+            <i class="fa-solid fa-eye"></i><span> ${total_view ? total_view : 544}</span>
+            </div>
+            <div>
+            ${showRatings(number)}
             <small class="text-gray"> ${number}</small>
+            </div>
         </div>
         
         </div>
@@ -148,5 +138,18 @@ const displayOneNewDetails = (news) => {
             <button type="button" class="btn btn-primary">Save changes</button>
         </div>
     </div>
-    `
+    `;
+};
+
+const showRatings = number => {
+    let numberHtml = '';
+    for (let i = 1; i <= Math.floor(number); i++) {
+        numberHtml += `<i class="fa-solid fa-star"></i>`;
+    }
+    if (number - Math.floor(number) > 0) {
+        numberHtml += `<i class="fa-solid fa-star-half"></i>`;
+
+    }
+    return numberHtml;
+
 }
