@@ -42,7 +42,7 @@
         </nav>
     </header>
     <main class="container mt-3">
-        <section id="news_section" class="d-flex justify-content-between">
+        <section id="news_section" class="d-flex justify-content-between flex-wrap column-gap-4 row-gap-2">
         </section>
         <!-- alert section -->
         <section class="mt-5">
@@ -51,16 +51,14 @@
             </div>
         </section>
         <!-- view section -->
-        <section class="mt-5 container d-flex justify-content-between ">
+        <section class="mt-5 container d-flex justify-content-between flex-wrap gap-2">
             <div class="d-flex gap-3 align-items-center ">
                 <span class="fw-bold flex-shrink-0">Sort By View: </span>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Default</option>
                 </select>
-
-
             </div>
-            <div>
+            <div >
                 <button class="btn btn-primary" onclick="displayTodayPack()">Today's Pack</button>
                 <button class="btn btn-outline-primary" onclick="displayTending()">Tending</button>
 
@@ -72,12 +70,12 @@
         </section>
 
         <!-- modal section -->
- -
+        -
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class=" modal-dialog modal-dialog-scrollable">
                 <div class="modal-content" id="modal_section">
-                    
+
                 </div>
             </div>
         </div>

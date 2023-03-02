@@ -36,19 +36,19 @@ const displayALLnews = (data, name) => {
         const { number } = rating;
         const card = document.createElement('div');
         card.innerHTML = `
-        <div class="card mb-3 container border-0 p-0 ">
+        <div class="card mb-3 container border-0 p-0">
         <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
                 <img src="${image_url}" class="img-fluid rounded-start" alt="...">
             </div>
-            <div class="col-md-8">
+            <div class="col-12 col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${title}</h5>
                     <p class="card-text">${details.slice(0, 200)}...</p>
                     <p class="card-text">${details.slice(200, 250)}...</p>
                 </div>
 
-                <div class="card-footer border-0 bg-body d-flex justify-content-between align-items-center">
+                <div class="card-footer border-0 bg-body d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <div class="d-flex gap-2">
                         <div class="" style="width:50px">
                             <img src="${img}" class="img-fluid rounded-circle border" alt="">
@@ -149,5 +149,4 @@ const displayOneNewDetails = (news) => {
         </div>
     </div>
     `
-
 }
